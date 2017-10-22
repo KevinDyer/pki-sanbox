@@ -38,6 +38,21 @@ $ docker run -d --rm \
 ```
 
 ## Create echo service with certificate
-``` bash
+``` basha
+$ cd ../echo-service
+$ docker build -t echo-service .
+$ docker run --rm \
+  --network pki \
+  --name echo-service \
+  --hostname echo-service \
+  echo-service
+```
 
+## Check with curl
+```
+$ cd ..
+$ docker run --rm --network pki -v ${PWD}:/usr/local/pki -it ubuntu:xenial
+# apt update && apt install -y curl python
+# ln -s /usr/local/pki/root-ca/root-ca.pem /etc/ssl/certs/root-ca.pem
+# curl -d "foo=bar" -X PUT "https://echo-service" | python -m json.tool
 ```

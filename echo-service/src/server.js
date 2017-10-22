@@ -22,26 +22,19 @@
       method: 'POST',
       body: JSON.stringify(body)
     };
-    console.log(require('util').inspect(input, {colors: true, depth: null}));
-    console.log(require('util').inspect(init, {colors: true, depth: null}));
     return fetch(input, init)
     .then((res) => {
       return res.json()
       .then((body) => {
         if (!res.ok) {
-          console.log(`res is not OK`);
-          console.log(require('util').inspect(body, {colors: true, depth: null}));
-          return Promise.reject(new Error('request failed'));
+          return Promise.reject(new Error('getCertificateAuthorityInfo request failed'));
         }
         const {success, messages, errors, result} = body;
         if (!success) {
-          console.log(require('util').inspect(messages, {colors: true, depth: null}));
-          console.log(require('util').inspect(errors, {colors: true, depth: null}));
-          return Promise.reject(new Error('cfssl request failed'));
+          return Promise.reject(new Error('getCertificateAuthorityInfo cfssl request failed'));
         }
-        console.log(require('util').inspect(result, {colors: true, depth: null}));
-        const {certiticate} = result;
-        return {cert: certiticate};
+        const {certificate} = result;
+        return {cert: certificate};
       });
     });
   }
@@ -53,26 +46,19 @@
       method: 'POST',
       body: JSON.stringify(body)
     };
-    console.log(require('util').inspect(input, {colors: true, depth: null}));
-    console.log(require('util').inspect(init, {colors: true, depth: null}));
     return fetch(input, init)
     .then((res) => {
       return res.json()
       .then((body) => {
         if (!res.ok) {
-          console.log(`res is not OK`);
-          console.log(require('util').inspect(body, {colors: true, depth: null}));
-          return Promise.reject(new Error('request failed'));
+          return Promise.reject(new Error('getCertificateInfo request failed'));
         }
         const {success, messages, errors, result} = body;
         if (!success) {
-          console.log(require('util').inspect(messages, {colors: true, depth: null}));
-          console.log(require('util').inspect(errors, {colors: true, depth: null}));
-          return Promise.reject(new Error('cfssl request failed'));
+          return Promise.reject(new Error('getCertificateInfo cfssl request failed'));
         }
-        console.log(require('util').inspect(result, {colors: true, depth: null}));
-        const {private_key, certiticate} = result;
-        return {key: private_key, cert: certiticate};
+        const {private_key, certificate} = result;
+        return {key: private_key, cert: certificate};
       });
     });
   }
@@ -132,6 +118,6 @@
       });
     }
   }
-  
+
   module.exports = Server;
 })();
