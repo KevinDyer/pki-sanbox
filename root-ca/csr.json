@@ -1,0 +1,17 @@
+{
+  "CN": "root-ca",
+  "key": {
+     "algo": "rsa",
+     "size": 4096
+  },
+  "names": [{
+    "C": "US",
+    "ST": "Colorado",
+    "L": "Broomfield",
+    "O": "My Organisation",
+    "OU": "My Organisational Unit Inside My Organisation"
+  }],
+  "ca": {
+     "expiry": "262800h"
+  }
+}

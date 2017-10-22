@@ -1,0 +1,15 @@
+{
+  "CN": "echo-service",
+  "key": {
+     "algo": "rsa",
+     "size": 2048
+  },
+  "names": [{
+    "C": "US",
+    "ST": "Colorado",
+    "L": "Broomfield",
+    "O": "My Organisation",
+    "OU": "My Organisational Unit Inside My Organisation"
+  }],
+  "hosts": ["echo-service", "localhost"]
+}
